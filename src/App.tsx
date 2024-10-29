@@ -1,5 +1,8 @@
-import {createGlobalStyle} from "styled-components";
-import Country from "./Country";
+import styled, {createGlobalStyle} from "styled-components";
+import Country from "./components/CountryForm";
+import CountryList from "./components/CountryList";
+import CountryForm from "./components/CountryForm";
+import {Category} from "./atom";
 
 const GlobalStyle = createGlobalStyle`
   @import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400&display=swap');
@@ -70,11 +73,24 @@ const GlobalStyle = createGlobalStyle`
   }
 `
 
+const Title = styled.h1`
+    font-weight: bolder;
+    font-size: larger;
+    margin-bottom: 10px;
+    margin-top: 10px;
+`;
+
 function App() {
   return (
       <>
-        <GlobalStyle/>
-        <Country />
+          <GlobalStyle/>
+          <Title>내가 가고싶은 나라들</Title>
+          <CountryForm />
+          <CountryList tag={Category.WANT}/>
+          <Title>내가 가본 나라들</Title>
+          <CountryList tag={Category.HAVE_BEEN}/>
+          <Title>내가 좋아하는 나라들</Title>
+          <CountryList tag={Category.LIKE}/>
       </>
   );
 }
